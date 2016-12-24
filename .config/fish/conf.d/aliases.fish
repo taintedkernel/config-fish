@@ -8,6 +8,7 @@ alias lrt='ls -lrt'
 
 alias la='ls -A'
 alias lal='ls -lA'
+alias lla='ls -lA'
 alias lart='ls -lArt'
 
 alias l.='ls -d .*'
@@ -43,12 +44,12 @@ alias grep='grep --color'
 # git #
 function gcr
     which git >/dev/null 2>&1
-    if $status
+    if test $status -ne 0
         echo "git not found!"
         return
     end
     set GIT_ROOT (git rev-parse --show-toplevel 2>/dev/null)
-    if $status
+    if test $status -eq 0
         cd $GIT_ROOT
     else
         echo "not in a git repo!"
@@ -70,7 +71,7 @@ alias cgr="gcr"
 # vcsh #
 function vs
     which vcsh >/dev/null 2>&1
-    if $status
+    if test $status -ne 0
         echo "vcsh not found!"
         return
     end
@@ -80,7 +81,11 @@ end
 # tmux #
 function tda
     tmux detach -s $argv
-    tmux attach -t $argv
+    if test $status -eq 0
+        tmux attach -t $argv
+    else
+        echo "unable to detach session $argv, aborting"
+    end
 end
 
 alias tns="tmux new-session -s"
@@ -97,5 +102,7 @@ if test -x "/usr/bin/yum"
     alias ys="sudo yum search"
     alias yi="sudo yum install"
 end
+
+
 
 
