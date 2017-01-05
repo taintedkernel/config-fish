@@ -43,7 +43,7 @@ alias grep='grep --color'
 
 # git #
 function gcr
-    which git >/dev/null 2>&1
+    which git >/dev/null ^&1
     if test $status -ne 0
         echo "git not found!"
         return
@@ -70,7 +70,7 @@ alias cgr="gcr"
 
 # vcsh #
 function vs
-    which vcsh >/dev/null 2>&1
+    which vcsh >/dev/null ^&1
     if test $status -ne 0
         echo "vcsh not found!"
         return
@@ -79,6 +79,21 @@ function vs
 end
 
 # tmux #
+function ta
+    tmux ls >/dev/null
+    if test $status -eq 0
+        set count (tmux ls | wc -l)
+        echo $count
+        if test $count -eq 1
+            tmux attach
+        else
+            tmux attach -t $argv
+        end
+    else
+        echo "tmux not running or errored"
+    end
+end
+
 function tda
     tmux detach -s $argv
     if test $status -eq 0
@@ -89,8 +104,9 @@ function tda
 end
 
 alias tns="tmux new-session -s"
-alias ta="tmux attach -t"
+#alias ta="tmux attach -t"
 alias td="tmux detach -s"
+alias tls="tmux ls"
 
 ## distro-specific ##
 # package manager #
