@@ -50,15 +50,15 @@ alias grep='grep --color'
 
 # ack #
 # TODO: install/configure ack with config mgmt?
-alias a="ack"
-alias ai="ack -i"
-alias aq="ack -Q"
-alias aiq="ack -iQ"
+alias a='ack'
+alias ai='ack -i'
+alias aq='ack -Q'
+alias aiq='ack -iQ'
 
-alias av="ack -v"
-alias aiv="ack -iv"
-alias aqv="ack -Qv"
-alias aiqv="ack -iQv"
+alias av='ack -v'
+alias aiv='ack -iv'
+alias aqv='ack -Qv'
+alias aiqv='ack -iQv'
 
 # Platform-specific stuff #
 if test (uname) = "Darwin"
@@ -91,24 +91,24 @@ function gcr
     end
 end
 
-alias gco="git checkout"
-alias gbr="git branch"
-alias gbra="git branch -a"
-alias gst="git status"
-alias gdi="git diff"
-alias gdic="git diff --cached"
-alias gdit="git diftool"
-alias gditc="git diftool --cached"
-alias ga="git add"
-alias gau="git add -u"
-alias glog="git glog"
-alias gci="git commit"
-alias grm="git remote"
-alias grmv="git remote -v"
-alias glom="git pull origin master"
-alias gsom="git push origin master"
-alias gcr="gcr"
-alias cgr="gcr"
+alias gco='git checkout'
+alias gbr='git branch'
+alias gbra='git branch -a'
+alias gst='git status'
+alias gdi='git diff'
+alias gdic='git diff --cached'
+alias gdit='git diftool'
+alias gditc='git diftool --cached'
+alias ga='git add'
+alias gau='git add -u'
+alias glog='git glog'
+alias gci='git commit'
+alias grm='git remote'
+alias grmv='git remote -v'
+alias glom='git pull origin master'
+alias gsom='git push origin master'
+alias gcr='gcr'
+alias cgr='gcr'
 
 # vcsh #
 function vs
@@ -145,20 +145,20 @@ function tda
     end
 end
 
-alias tns="tmux new-session -s"
-#alias ta="tmux attach -t"
-alias td="tmux detach -s"
-alias tls="tmux ls"
+alias tns='tmux new-session -s'
+#alias ta='tmux attach -t'
+alias td='tmux detach -s'
+alias tls='tmux ls'
 
 ## distro-specific ##
 # package manager #
 if test -x "/usr/bin/apt-get"
-    alias acs="apt-cache search"
-    alias agi="sudo apt-get install"
+    alias acs='apt-cache search'
+    alias agi='sudo apt-get install'
 end
 if test -x "/usr/bin/yum"
-    alias ys="sudo yum search"
-    alias yi="sudo yum install"
+    alias ys='sudo yum search'
+    alias yi='sudo yum install'
 end
 
 
