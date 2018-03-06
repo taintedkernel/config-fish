@@ -1,6 +1,10 @@
+# fish aliases - public
+# (fish implementation of my .bashrc.public)
 
-alias ...="cd ..; and cd .."
-alias ....="cd ..; and cd ..; and cd .."
+### aliases ###
+alias ..='cd ..'
+alias ...='cd ..; and cd ..'
+alias ....='cd ..; and cd ..; and cd ..'
 
 alias l='ls'
 alias ll='ls -l'
@@ -16,6 +20,7 @@ alias l.='ls -d .*'
 alias c='clear'
 alias f='find'
 alias h='history'
+alias sl='less'
 
 alias rm='rm -i'
 
@@ -24,8 +29,8 @@ alias tf='tail -f'
 alias tF='tail -F'
 
 alias df='df -m'
-alias ds='du --max-depth=1'
-alias dss='du -S --max-depth=1'
+alias ds='du -k --max-depth=1'
+alias dss='du -Sk --max-depth=1'
 
 # grep #
 alias g='grep'
@@ -37,9 +42,39 @@ alias gv='grep -v'
 alias giv='grep -iv'
 alias girv='grep -ivR'
 
-# TODO: install/configure ack
+alias gcnc="egrep -v '^\w*#|^\w*\$'"
+alias gsvn="grep -v '\.svn'"
+
 alias grep='grep --color'
 # export GREP_OPTIONS='--color=auto'     # deprecated
+
+# ack #
+# TODO: install/configure ack with config mgmt?
+alias a="ack"
+alias ai="ack -i"
+alias aq="ack -Q"
+alias aiq="ack -iQ"
+
+alias av="ack -v"
+alias aiv="ack -iv"
+alias aqv="ack -Qv"
+alias aiqv="ack -iQv"
+
+# Platform-specific stuff #
+if test (uname) = "Darwin"
+    # If using BSD, change defaults from GNU
+    if test (which du) = "/usr/local/opt/coreutils/libexec/gnubin/du"
+        alias du='du -k'
+        alias ds='du -k -d 1'
+        functions -e dss
+    end
+
+    # If we've installed GNU coreutils with brew, configure
+    if test (which ls) = "/usr/local/opt/coreutils/libexec/gnubin/ls"
+        alias ls='ls --color'
+        alias less='less -R'
+    end
+end
 
 # git #
 function gcr
@@ -58,15 +93,21 @@ end
 
 alias gco="git checkout"
 alias gbr="git branch"
+alias gbra="git branch -a"
 alias gst="git status"
 alias gdi="git diff"
 alias gdic="git diff --cached"
+alias gdit="git diftool"
+alias gditc="git diftool --cached"
 alias ga="git add"
 alias gau="git add -u"
-alias glog="git log"
+alias glog="git glog"
 alias gci="git commit"
+alias grm="git remote"
+alias grmv="git remote -v"
 alias glom="git pull origin master"
 alias gsom="git push origin master"
+alias gcr="gcr"
 alias cgr="gcr"
 
 # vcsh #
