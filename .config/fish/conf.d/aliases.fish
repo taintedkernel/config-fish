@@ -111,14 +111,14 @@ alias gcr='gcr'
 alias cgr='gcr'
 
 # vcsh #
-function vs
-    which vcsh >/dev/null ^&1
-    if test $status -ne 0
-        echo "vcsh not found!"
-        return
-    end
-    vcsh $1 status
-end
+#function vs
+#    which vcsh >/dev/null ^&1
+#    if test $status -ne 0
+#        echo "vcsh not found!"
+#        return
+#    end
+#    vcsh $1 status
+#end
 
 # tmux #
 function ta
