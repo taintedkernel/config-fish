@@ -82,7 +82,7 @@ if [ (uname) = "Darwin" ]
 end
 
 # git #
-function gcr
+function gcr --description "change dir to git root"
     which git >/dev/null ^&1
     if [ $status -ne 0 ]
         echo "git not found!"
@@ -96,29 +96,31 @@ function gcr
     end
 end
 
-alias gco='git checkout'
-alias gbr='git branch'
-alias gbra='git branch -a'
-alias gst='git status'
-alias gdi='git diff'
-alias gdic='git diff --cached'
-alias gdit='git diftool'
-alias gditc='git diftool --cached'
-alias ga='git add'
-alias gau='git add -u'
-alias glog='git glog'
-alias gci='git commit'
-alias gcim='git commit -m'
-alias grm='git remote'
-alias grmv='git remote -v'
-alias glom='git pull origin master'
-alias gsom='git push origin master'
-alias gcr='gcr'
-alias cgr='gcr'
+# Use abbr instead of alias to allow tab completion
+abbr -a gco='git checkout'
+abbr -a gbr='git branch'
+abbr -a gbra='git branch -a'
+abbr -a gst='git status'
+abbr -a gdi='git diff'
+abbr -a gdic='git diff --cached'
+abbr -a gdit='git diftool'
+abbr -a gditc='git diftool --cached'
+abbr -a ga='git add'
+abbr -a gau='git add -u'
+abbr -a glog='git glog'
+abbr -a gci='git commit'
+abbr -a gcim='git commit -m'
+abbr -a grm='git remote'
+abbr -a grmv='git remote -v'
+abbr -a glom='git pull origin master'
+abbr -a gsom='git push origin master'
+abbr -a gcr='gcr'
+abbr -a cgr='gcr'
 
 # Helper function to git push with temporary permissions,
 # in case you don't want to leave the unlocked key in your keyring
-function gsomv
+# We could alternatively could use GIT_SSH_COMMAND
+function gsomk --description "git push origin master with temporary unlocked key"
     set KEY (ls -1 $HOME/.ssh/id_github* | grep -v '\.pub')
     ssh-add $KEY
     git push origin master
@@ -136,23 +138,23 @@ end
 #end
 
 # tmux #
-function ta
+# TODO: Switch this to abbr, or use --wraps to existing tmux completions
+function ta --description "tmux attach"
     tmux ls >/dev/null
     if [ $status -ne 0 ]
         return
     end
-    if [ (tmux ls | wc -l) -eq 1 ]
+    if [ (tmux ls | grep -v '(attached)' | wc -l) -eq 1 ]
         tmux attach
-    else if [ $argv = "" ]
-        echo "[error] no session specified!"
-        echo "Current sessions:"
+    else if [ "$argv" = "" ]
+        echo "[error] no session specified, current sessions:"
         tmux ls
     else
         tmux attach -t $argv
     end
 end
 
-function tda
+function tda --description "tmux detach & attach"
     tmux ls >/dev/null
     if [ $status -ne 0 ]
         return
@@ -186,21 +188,3 @@ if [ -x "/usr/bin/yum" ]
 end
 
 
-### other environment variables ###
-# set TERM
-if [ $TERM = "xterm" -o $COLORTERM = "gnome-terminal" ]
-    set -x TERM xterm-256color
-end
-
-# add $HOME/bin to PATH
-# http://stackoverflow.com/questions/1396066/detect-if-users-path-has-a-specific-directory-in-it
-if not contains $HOME/bin $PATH
-    set PATH $HOME/bin $PATH
-end
-
-# editor
-set -x EDITOR vim
-
-
-# unfuck BSD defaults #
-set -x BLOCKSIZE 1024
