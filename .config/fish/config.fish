@@ -11,9 +11,9 @@ for p in $PATHS
 end
 
 
-### environment variables ###
+#### environment variables ###
 # set TERM
-if [ $TERM = "xterm" -o $COLORTERM = "gnome-terminal" ]
+if [ "$TERM" = "xterm" -o "$COLORTERM" = "gnome-terminal" ]
     set -x TERM xterm-256color
 end
 

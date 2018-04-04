@@ -11,13 +11,18 @@ alias ....='cd ..; and cd ..; and cd ..'
 alias l='ls'
 alias ll='ls -l'
 alias lrt='ls -lrt'
-
 alias la='ls -A'
 alias lal='ls -lA'
 alias lla='ls -lA'
 alias lart='ls -lArt'
 
-alias l.='ls -d .*'
+# Avoid wildcard expansion error #
+function l. --description "ls dotfiles"
+    set dots .*
+    if count $dots >/dev/null
+        ls -d $dots
+    end
+end
 
 alias c='clear'
 alias f='find'
@@ -48,7 +53,6 @@ alias girv='grep -ivR'
 
 alias gcnc="egrep -v '^\w*#|^\w*\$'"
 alias gsvn="grep -v '\.svn'"
-
 alias grep='grep --color'
 # export GREP_OPTIONS='--color=auto'     # deprecated
 
@@ -116,6 +120,19 @@ abbr -a glom='git pull origin master'
 abbr -a gsom='git push origin master'
 abbr -a gcr='gcr'
 abbr -a cgr='gcr'
+
+function gsob --description "git push origin <current branch>"
+    set GIT_BR (git rev-parse --abbrev-ref HEAD ^/dev/null)
+    if [ $status -ne 0 ]
+        echo "[error] unable to find git branch, aborting"
+        return
+    else if [ "$GIT_BR" = "HEAD" ]
+        echo "[error] detached HEAD, will not push"
+        return
+    end
+    echo "Pushing $GIT_BR to origin..."
+    git push origin $GIT_BR
+end
 
 # Helper function to git push with temporary permissions,
 # in case you don't want to leave the unlocked key in your keyring
@@ -186,5 +203,27 @@ if [ -x "/usr/bin/yum" ]
     alias ys='sudo yum search'
     alias yi='sudo yum install'
 end
+
+
+### non-system aliases/functions ###
+
+# docker #
+
+function dent --description "enter a docker container"
+    CONTAINER=$argv
+    docker exec -it $CONTAINER bash
+end
+
+
+### other functions ###
+
+function glc --description "grab a line"
+    if [ "$argv" -gt 0 ]
+        cat - | tail -n+$argv | head -1
+    else if [ "$argv" -lt 0 ]
+        cat - | tail -n$argv | head -1
+    end
+end
+
 
 
