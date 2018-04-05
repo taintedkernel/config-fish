@@ -1,7 +1,23 @@
 # fish aliases - public
 # fish implementation of my .bashrc.public
+#
+# Many shortcuts are set using fish's abbr functionality.
+# This allows for easy editing and tab-completion.
+#
+# However, aliases are still used in a few locations -
+# mostly where defaults are wanted to be overwritten and
+# don't want to be reminded or take up space on the CLI.
+#
 
-### aliases ###
+
+# Clear out any existing abbreviations #
+# https://fishshell.com/docs/current/commands.html#abbr
+if status --is-interactive
+    set -g fish_user_abbreviations
+end
+
+
+### aliases/abbrs ###
 alias sf='source ~/.config/fish/conf.d/*'
 
 alias ..='cd ..'
@@ -16,11 +32,19 @@ alias lal='ls -lA'
 alias lla='ls -lA'
 alias lart='ls -lArt'
 
-# Avoid wildcard expansion error #
+# Avoid wildcard expansion errors #
+# https://fishshell.com/docs/current/index.html#expand
 function l. --description "ls dotfiles"
     set dots .*
     if count $dots >/dev/null
         ls -d $dots
+    end
+end
+
+# If we've installed GNU coreutils and set default, configure
+if [ (uname) = "Darwin" ]
+    if [ (which ls) = "/usr/local/opt/coreutils/libexec/gnubin/ls" ]
+        alias ls='ls --color'
     end
 end
 
@@ -30,18 +54,32 @@ alias h='history'
 
 alias rm='rm -i'
 
-alias sl='less -R'
 alias less='less -R'
+alias sl='less'
 
 alias t='tail'
 alias tf='tail -f'
 alias tF='tail -F'
 
+# df in MiB, du in KiB
 alias df='df -m'
-alias ds='du -k --max-depth=1'
-alias dss='du -Sk --max-depth=1'
+alias du='du -k'
+
+alias dud='du -d 1'
+
+# Platform/utils specific settings
+# Only GNU du supports '-S' for separate-dirs
+if [ (uname) = "Darwin" ]
+    if [ (which du) = "/usr/local/opt/coreutils/libexec/gnubin/du" ]
+        alias duds='du -S -d 1'
+    end
+else
+    alias duds='du -S -d 1'
+end
 
 # grep #
+alias grep='grep --color=auto'
+
 alias g='grep'
 alias gi='grep -i'
 alias gr='grep -R'
@@ -53,7 +91,6 @@ alias girv='grep -ivR'
 
 alias gcnc="egrep -v '^\w*#|^\w*\$'"
 alias gsvn="grep -v '\.svn'"
-alias grep='grep --color'
 # export GREP_OPTIONS='--color=auto'     # deprecated
 
 # ack #
@@ -67,23 +104,6 @@ alias av='ack -v'
 alias aiv='ack -iv'
 alias aqv='ack -Qv'
 alias aiqv='ack -iQv'
-
-# Platform-specific stuff #
-if [ (uname) = "Darwin" ]
-    # If using BSD, change defaults from GNU
-    if [ (which du) = "/usr/local/opt/coreutils/libexec/gnubin/du" ]
-        alias du='du -k'
-        alias ds='du -k -d 1'
-        functions -e dss
-    end
-
-    # If we've installed GNU coreutils with brew, configure
-    # This requires PATH to be modified to set coreutils to default 'ls'
-    # TODO: Detect brew coreutils, findutils, etc & configure PATH/MANPATH automatically
-    if [ (which ls) = "/usr/local/opt/coreutils/libexec/gnubin/ls" ]
-        alias ls='ls --color'
-    end
-end
 
 # git #
 function gcr --description "change dir to git root"
@@ -107,8 +127,8 @@ abbr -a gbra='git branch -a'
 abbr -a gst='git status'
 abbr -a gdi='git diff'
 abbr -a gdic='git diff --cached'
-abbr -a gdit='git diftool'
-abbr -a gditc='git diftool --cached'
+abbr -a gdit='git difftool'
+abbr -a gditc='git difftool --cached'
 abbr -a ga='git add'
 abbr -a gau='git add -u'
 abbr -a glog='git glog'
@@ -118,8 +138,8 @@ abbr -a grm='git remote'
 abbr -a grmv='git remote -v'
 abbr -a glom='git pull origin master'
 abbr -a gsom='git push origin master'
-abbr -a gcr='gcr'
-abbr -a cgr='gcr'
+#abbr -a gcr='gcr'
+#abbr -a cgr='gcr'
 
 function gsob --description "git push origin <current branch>"
     set GIT_BR (git rev-parse --abbrev-ref HEAD ^/dev/null)
@@ -137,6 +157,8 @@ end
 # Helper function to git push with temporary permissions,
 # in case you don't want to leave the unlocked key in your keyring
 # We could alternatively could use GIT_SSH_COMMAND
+#
+# Assumes there is a correct key to match ~/.ssh/id_github*
 function gsomk --description "git push origin master with temporary unlocked key"
     set KEY (ls -1 $HOME/.ssh/id_github* | grep -v '\.pub')
     ssh-add $KEY
@@ -196,12 +218,16 @@ alias td='tmux detach -s'
 ## distro-specific ##
 # package manager #
 if [ -x "/usr/bin/apt-get" ]
-    alias acs='apt-cache search'
-    alias agi='sudo apt-get install'
+    abbr -a acs='apt-cache search'
+    abbr -a agi='sudo apt-get install'
 end
 if [ -x "/usr/bin/yum" ]
-    alias ys='sudo yum search'
-    alias yi='sudo yum install'
+    abbr -a ys='sudo yum search'
+    abbr -a yi='sudo yum install'
+end
+if [ -x "/usr/local/bin/brew" ]
+    abbr -a bi="brew install"
+    abbr -a bs="brew search"
 end
 
 
