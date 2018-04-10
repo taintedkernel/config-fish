@@ -10,13 +10,6 @@
 #
 
 
-# Clear out any existing abbreviations #
-# https://fishshell.com/docs/current/commands.html#abbr
-if status --is-interactive
-    set -g fish_user_abbreviations
-end
-
-
 ### aliases/abbrs ###
 alias sf='source ~/.config/fish/conf.d/*'
 
@@ -122,6 +115,7 @@ end
 
 # Use abbr instead of alias to allow tab completion
 abbr -a gco='git checkout'
+abbr -a gcob='git checkout -b'
 abbr -a gbr='git branch'
 abbr -a gbra='git branch -a'
 abbr -a gst='git status'
