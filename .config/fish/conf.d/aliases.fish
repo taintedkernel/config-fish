@@ -187,6 +187,7 @@ function ta --description "tmux attach"
     end
 end
 
+# TODO: Same as above
 function tda --description "tmux detach & attach"
     tmux ls >/dev/null
     if [ $status -ne 0 ]
