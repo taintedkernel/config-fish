@@ -98,6 +98,24 @@ alias aiv='ack -iv'
 alias aqv='ack -Qv'
 alias aiqv='ack -iQv'
 
+# helper function to invoke ack for an expression
+# will ignore lines commented out (single line #-style)
+# also accepts arbitrary arguments that get passed on
+function aic --description "ack ignore comments"
+    if [ (count $argv) -gt 1 ]
+        set split (string split -r -m1 -- " " "$argv")
+        if [ $status -ne 0 ]
+            echo "Unable to parse"
+            return
+        end
+        set args $split[1]
+        set pattern $split[2]
+    else
+        set pattern $argv
+    end
+    ack $args "^[^#]*$pattern"
+end
+
 # git #
 function gcr --description "change dir to git root"
     which git >/dev/null ^&1
