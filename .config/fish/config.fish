@@ -8,7 +8,7 @@
 
 # set PATH
 # TODO: Add equivalent Linux path
-set PATHS "$HOME/bin" "$HOME/Library/Python/2.7/bin"
+set PATHS "$HOME/bin" "$HOME/.local/bin" "$HOME/Library/Python/2.7/bin"
 for P in $PATHS
     if not contains "$P" $PATH
         if [ -d "$P" ]
@@ -31,11 +31,13 @@ set -x BLOCKSIZE 1024
 
 
 ### load powerline ###
-# TODO: Add powerline path for Linux
-set POWERLINE_PATH "$HOME/Library/Python/2.7/lib/python/site-packages/powerline/bindings/fish/"
-for P in $POWERLINE_PATH
-    if [ -d "$P" ]
-        set fish_function_path $fish_function_path $P
+set POWERLINE_BASES "$HOME/.local/lib/python2.7/" "$HOME/Library/Python/2.7/lib/python/"
+set PL_FISH "site-packages/powerline/bindings/fish/"
+
+for P in $POWERLINE_BASES
+    set POWERLINE_PATH "$P/$PL_FISH"
+    if [ -d "$POWERLINE_PATH" ]
+        set fish_function_path $fish_function_path $POWERLINE_PATH
     end
 end
 
