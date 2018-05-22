@@ -134,6 +134,7 @@ end
 # Use abbr instead of alias to allow tab completion
 abbr -a gco='git checkout'
 abbr -a gcob='git checkout -b'
+abbr -a gcom='git checkout master'
 abbr -a gbr='git branch'
 abbr -a gbra='git branch -a'
 abbr -a gst='git status'
@@ -143,6 +144,7 @@ abbr -a gdit='git difftool'
 abbr -a gditc='git difftool --cached'
 abbr -a ga='git add'
 abbr -a gau='git add -u'
+abbr -a gaa='git add -A'
 abbr -a glog='git glog'
 abbr -a gci='git commit'
 abbr -a gcim='git commit -m'
@@ -153,6 +155,7 @@ abbr -a gsom='git push origin master'
 #abbr -a gcr='gcr'
 #abbr -a cgr='gcr'
 
+# TODO: This should take arguments
 function gsob --description "git push origin <current branch>"
     set GIT_BR (git rev-parse --abbrev-ref HEAD ^/dev/null)
     if [ $status -ne 0 ]

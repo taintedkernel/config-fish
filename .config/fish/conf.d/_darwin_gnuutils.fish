@@ -9,6 +9,12 @@ if [ (uname) = "Darwin" ]
     set EXTRA_PATHS "/usr/local/opt/gettext/bin" "/usr/local/opt/gnu-getopt/bin"
     set UTIL_PATHS $EXTRA_PATHS $SED_PATH $TAR_PATH $FIND_PATH $CORE_PATH
 
+    # Man is broken if we tinker with MANPATH,
+    # by default it's empty
+    for M in (manpath | string split ":")
+        set MANPATH $M $MANPATH
+    end
+
     # Dynamically configure missing PATHs
     for P in $UTIL_PATHS
         if not contains "$P" $PATH
@@ -23,5 +29,6 @@ if [ (uname) = "Darwin" ]
             end
         end
     end
+
 end
 
