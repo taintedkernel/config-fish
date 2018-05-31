@@ -148,9 +148,12 @@ abbr -a gaa='git add -A'
 abbr -a glog='git glog'
 abbr -a gci='git commit'
 abbr -a gcim='git commit -m'
+abbr -a gcia='git commit --amend'
 abbr -a grm='git remote'
 abbr -a grmv='git remote -v'
 abbr -a glom='git pull origin master'
+abbr -a glomf='git pull origin master --ff-only'
+abbr -a glomr='git pull origin master --rebase'
 abbr -a gsom='git push origin master'
 #abbr -a gcr='gcr'
 #abbr -a cgr='gcr'
@@ -165,8 +168,12 @@ function gsob --description "git push origin <current branch>"
         echo "[error] detached HEAD, will not push"
         return
     end
-    echo "Pushing $GIT_BR to origin..."
-    git push origin $GIT_BR
+    echo -n "Pushing $GIT_BR to origin"
+	if [ "$argv" != "" ]
+		echo -n " (with $argv)"
+	end
+	echo "..."
+    git push origin $GIT_BR $argv
 end
 
 # Helper function to git push with temporary permissions,
