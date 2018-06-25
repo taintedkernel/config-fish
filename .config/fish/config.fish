@@ -30,7 +30,17 @@ set -x EDITOR vim
 set -x BLOCKSIZE 1024
 
 
-### load powerline ###
+#
+# load virtualfish #
+# http://virtualfish.readthedocs.io/en/latest/index.html
+#
+# located here instead of in conf.d due to
+# requirement of invoking after PATH modifications
+#
+eval (python -m virtualfish ^/dev/null)
+
+
+# load powerline #
 set POWERLINE_BASES "$HOME/.local/lib/python2.7/" "$HOME/Library/Python/2.7/lib/python/"
 set PL_FISH "site-packages/powerline/bindings/fish/"
 
