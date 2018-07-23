@@ -7,7 +7,7 @@
 #end
 
 # set PATH
-# TODO: Add equivalent Linux path
+# TODO: Add Linux Python path
 set PATHS "$HOME/bin" "$HOME/.local/bin" "$HOME/Library/Python/2.7/bin"
 for P in $PATHS
     if not contains "$P" $PATH
@@ -49,6 +49,11 @@ for P in $POWERLINE_BASES
     if [ -d "$POWERLINE_PATH" ]
         set fish_function_path $fish_function_path $POWERLINE_PATH
     end
+end
+
+pgrep -f powerline-daemon
+if [ $status -ne 0 ]
+    powerline-daemon -q &
 end
 
 type -q powerline-setup
