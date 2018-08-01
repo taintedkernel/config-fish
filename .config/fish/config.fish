@@ -51,7 +51,7 @@ for P in $POWERLINE_BASES
     end
 end
 
-pgrep -f powerline-daemon
+pgrep -f powerline-daemon >/dev/null
 if [ $status -ne 0 ]
     powerline-daemon -q &
 end
