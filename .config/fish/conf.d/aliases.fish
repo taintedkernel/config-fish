@@ -183,9 +183,8 @@ end
 # Assumes there is a correct key to match ~/.ssh/id_github*
 function gsomk --description "git push origin master with temporary unlocked key"
     set KEY (ls -1 $HOME/.ssh/id_github* | grep -v '\.pub')
-    ssh-add $KEY
+    ssh-add -t 600 $KEY
     git push origin master
-    ssh-add -d $KEY
 end
 
 # vcsh #
