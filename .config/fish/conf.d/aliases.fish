@@ -276,5 +276,14 @@ function glc --description "grab a line"
     end
 end
 
+function dtp2u --description "convert time from pacific to UTC"
+    set tz (date +%Z)
+    echo -n "$argv $tz in UTC is "
+    env TZ="UTC" date -d "TZ=\"America/Los_Angeles\" $argv"
+end
 
+function dtu2p --description "convert time from UTC to pacific"
+    echo -n "$argv UTC in Pacific is "
+    env TZ="America/Los_Angeles" date -d "TZ=\"UTC\" $argv"
+end
 
