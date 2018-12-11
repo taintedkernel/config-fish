@@ -267,6 +267,7 @@ end
 
 # kubernetes #
 
+abbr -a kc="kubectl"
 abbr -a kcgp="kubectl get po"
 abbr -a kcdp="kubectl describe po"
 abbr -a kcgs="kubectl get svc"
