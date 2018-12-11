@@ -265,6 +265,14 @@ function dent --description "enter a docker container"
     docker exec -it $CONTAINER bash
 end
 
+# kubernetes #
+
+abbr -a kcgp="kubectl get po"
+abbr -a kcdp="kubectl describe po"
+abbr -a kcgs="kubectl get svc"
+abbr -a kcds="kubectl describe svc"
+abbr -a kcga="kubectl get all"
+abbr -a kcgaa="kubectl get all --all-namespaces"
 
 ### other functions ###
 
