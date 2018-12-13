@@ -268,12 +268,15 @@ end
 # kubernetes #
 
 abbr -a kc="kubectl"
+abbr -a kcg="kubectl get"
 abbr -a kcgp="kubectl get po"
-abbr -a kcdp="kubectl describe po"
 abbr -a kcgs="kubectl get svc"
-abbr -a kcds="kubectl describe svc"
 abbr -a kcga="kubectl get all"
+abbr -a kcdp="kubectl describe po"
+abbr -a kcds="kubectl describe svc"
 abbr -a kcgaa="kubectl get all --all-namespaces"
+abbr -a kcgc="kubectl config get-contexts"
+abbr -a kcsn="kubectl config set-context --current --namespace="
 
 ### other functions ###
 
