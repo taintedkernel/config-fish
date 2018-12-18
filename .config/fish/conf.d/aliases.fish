@@ -176,6 +176,18 @@ function gsob --description "git push origin <current branch>"
     git push origin $GIT_BR $argv
 end
 
+function gcb --description "git cleanup branch"
+    set GIT_BR (git rev-parse --abbrev-ref HEAD ^/dev/null)
+    if [ $status -ne 0 ]
+        echo "[error] unable to find git branch, aborting"
+        return
+    else if [ "$GIT_BR" = "HEAD" ]
+        echo "[error] detached HEAD, will not update"
+        return
+    end
+    git checkout master ;and git pull origin master --ff-only ;and git branch -d $GIT_BR
+end
+
 # Helper function to git push with temporary permissions,
 # in case you don't want to leave the unlocked key in your keyring
 # We could alternatively could use GIT_SSH_COMMAND
