@@ -40,6 +40,8 @@ set -x BLOCKSIZE 1024
 #
 eval (python -m virtualfish ^/dev/null)
 
+# disable automatic setting of fish_prompt in virtualenv, powerline handles this
+set -xg VIRTUAL_ENV_DISABLE_PROMPT true
 
 # load powerline #
 set POWERLINE_BASES "$HOME/.local/lib/python2.7/" "$HOME/Library/Python/2.7/lib/python/"
