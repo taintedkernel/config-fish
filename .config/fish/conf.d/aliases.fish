@@ -137,6 +137,7 @@ abbr -a gcob='git checkout -b'
 abbr -a gcom='git checkout master'
 abbr -a gbr='git branch'
 abbr -a gbra='git branch -a'
+abbr -a gbrd='git branch -d'
 abbr -a gst='git status'
 abbr -a gdi='git diff'
 abbr -a gdic='git diff --cached'
@@ -155,8 +156,6 @@ abbr -a glom='git pull origin master'
 abbr -a glomf='git pull origin master --ff-only'
 abbr -a glomr='git pull origin master --rebase'
 abbr -a gsom='git push origin master'
-#abbr -a gcr='gcr'
-#abbr -a cgr='gcr'
 
 # TODO: This should take arguments
 function gsob --description "git push origin <current branch>"
