@@ -132,6 +132,7 @@ function gcr --description "change dir to git root"
 end
 
 # Use abbr instead of alias to allow tab completion
+abbr -a gcl='git clone'
 abbr -a gco='git checkout'
 abbr -a gcob='git checkout -b'
 abbr -a gcom='git checkout master'
