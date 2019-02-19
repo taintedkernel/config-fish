@@ -9,7 +9,7 @@
 # set PATH
 # TODO: Add Linux Python path
 # TODO: Set /usr/local/ as higher priority, necessary for OS/X homebrew and pip
-set PATHS "$HOME/bin" "$HOME/.local/bin" "$HOME/Library/Python/2.7/bin"
+set PATHS "$HOME/bin" "$HOME/.local/bin" "$HOME/Library/Python/2.7/bin" "$HOME/sandbox/go/bin"
 for P in $PATHS
     if not contains "$P" $PATH
         if [ -d "$P" ]
