@@ -283,6 +283,7 @@ end
 
 abbr -a kc="kubectl"
 abbr -a kcg="kubectl get"
+abbr -a kcd="kubectl describe"
 abbr -a kcgp="kubectl get po"
 abbr -a kcgs="kubectl get svc"
 abbr -a kcga="kubectl get all"
@@ -292,6 +293,7 @@ abbr -a kcl="kubectl logs"
 abbr -a kce="kubectl exec"
 abbr -a kcgaa="kubectl get all --all-namespaces"
 abbr -a kcgc="kubectl config get-contexts"
+abbr -a kcuc="kubectl config use-context"
 abbr -a kcsn="kubectl config set-context --current --namespace="
 
 ### other functions ###
