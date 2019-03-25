@@ -284,6 +284,7 @@ end
 abbr -a kc="kubectl"
 abbr -a kcg="kubectl get"
 abbr -a kcd="kubectl describe"
+abbr -a kcdl="kubectl delete"
 abbr -a kcgp="kubectl get po"
 abbr -a kcgs="kubectl get svc"
 abbr -a kcga="kubectl get all"
