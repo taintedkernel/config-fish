@@ -132,33 +132,33 @@ function gcr --description "change dir to git root"
 end
 
 # Use abbr instead of alias to allow tab completion
-abbr -a gcl='git clone'
-abbr -a gco='git checkout'
-abbr -a gcob='git checkout -b'
-abbr -a gcom='git checkout master'
-abbr -a gbr='git branch'
-abbr -a gbra='git branch -a'
-abbr -a gbrd='git branch -d'
-abbr -a gst='git status'
-abbr -a gdi='git diff'
-abbr -a gdi.='git diff .'
-abbr -a gdic='git diff --cached'
-abbr -a gdit='git difftool'
-abbr -a gdit.='git difftool .'
-abbr -a gditc='git difftool --cached'
-abbr -a ga='git add'
-abbr -a gau='git add -u'
-abbr -a gaa='git add -A'
-abbr -a glog='git glog'
-abbr -a gci='git commit'
-abbr -a gcim='git commit -m'
-abbr -a gcia='git commit --amend'
-abbr -a grm='git remote'
-abbr -a grmv='git remote -v'
-abbr -a glom='git pull origin master'
-abbr -a glomf='git pull origin master --ff-only'
-abbr -a glomr='git pull origin master --rebase'
-abbr -a gsom='git push origin master'
+abbr -a gcl 'git clone'
+abbr -a gco 'git checkout'
+abbr -a gcob 'git checkout -b'
+abbr -a gcom 'git checkout master'
+abbr -a gbr 'git branch'
+abbr -a gbra 'git branch -a'
+abbr -a gbrd 'git branch -d'
+abbr -a gst 'git status'
+abbr -a gdi 'git diff'
+abbr -a gdi. 'git diff .'
+abbr -a gdic 'git diff --cached'
+abbr -a gdit 'git difftool'
+abbr -a gdit. 'git difftool .'
+abbr -a gditc 'git difftool --cached'
+abbr -a ga 'git add'
+abbr -a gau 'git add -u'
+abbr -a gaa 'git add -A'
+abbr -a glog 'git glog'
+abbr -a gci 'git commit'
+abbr -a gcim 'git commit -m'
+abbr -a gcia 'git commit --amend'
+abbr -a grm 'git remote'
+abbr -a grmv 'git remote -v'
+abbr -a glom 'git pull origin master'
+abbr -a glomf 'git pull origin master --ff-only'
+abbr -a glomr 'git pull origin master --rebase'
+abbr -a gsom 'git push origin master'
 
 # TODO: This should take arguments
 function gsob --description "git push origin <current branch>"
@@ -257,16 +257,16 @@ alias td='tmux detach -s'
 ## distro-specific ##
 # package manager #
 if [ -x "/usr/bin/apt-get" ]
-    abbr -a acs='apt-cache search'
-    abbr -a agi='sudo apt-get install'
+    abbr -a acs 'apt-cache search'
+    abbr -a agi 'sudo apt-get install'
 end
 if [ -x "/usr/bin/yum" ]
-    abbr -a ys='sudo yum search'
-    abbr -a yi='sudo yum install'
+    abbr -a ys 'sudo yum search'
+    abbr -a yi 'sudo yum install'
 end
 if [ -x "/usr/local/bin/brew" ]
-    abbr -a bi="brew install"
-    abbr -a bs="brew search"
+    abbr -a bi "brew install"
+    abbr -a bs "brew search"
 end
 
 
@@ -281,21 +281,21 @@ end
 
 # kubernetes #
 
-abbr -a kc="kubectl"
-abbr -a kcg="kubectl get"
-abbr -a kcd="kubectl describe"
-abbr -a kcdl="kubectl delete"
-abbr -a kcgp="kubectl get po"
-abbr -a kcgs="kubectl get svc"
-abbr -a kcga="kubectl get all"
-abbr -a kcdp="kubectl describe po"
-abbr -a kcds="kubectl describe svc"
-abbr -a kcl="kubectl logs"
-abbr -a kce="kubectl exec"
-abbr -a kcgaa="kubectl get all --all-namespaces"
-abbr -a kcgc="kubectl config get-contexts"
-abbr -a kcuc="kubectl config use-context"
-abbr -a kcsn="kubectl config set-context --current --namespace="
+abbr -a kc "kubectl"
+abbr -a kcg "kubectl get"
+abbr -a kcd "kubectl describe"
+abbr -a kcdl "kubectl delete"
+abbr -a kcgp "kubectl get po"
+abbr -a kcgs "kubectl get svc"
+abbr -a kcga "kubectl get all"
+abbr -a kcdp "kubectl describe po"
+abbr -a kcds "kubectl describe svc"
+abbr -a kcl "kubectl logs"
+abbr -a kce "kubectl exec"
+abbr -a kcgaa "kubectl get all --all-namespaces"
+abbr -a kcgc "kubectl config get-contexts"
+abbr -a kcuc "kubectl config use-context"
+abbr -a kcsn "kubectl config set-context --current --namespace "
 
 ### other functions ###
 
