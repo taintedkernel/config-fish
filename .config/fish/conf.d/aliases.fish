@@ -12,6 +12,7 @@
 
 ### aliases/abbrs ###
 alias sf='source ~/.config/fish/conf.d/*'
+alias cfc='cd ~/.config/fish/conf.d/'
 
 alias ..='cd ..'
 alias ...='cd ..; and cd ..'
@@ -185,6 +186,9 @@ function gcb --description "git cleanup branch"
         return
     else if [ "$GIT_BR" = "HEAD" ]
         echo "[error] detached HEAD, will not update"
+        return
+    else if [ "$GIT_BR" = "master" -a "$argv" = "" ]
+        echo "[error] master branch currently checked-out; cannot clean, aborting"
         return
     end
     git checkout master ;and git pull origin master --ff-only ;and git branch -d $GIT_BR

@@ -41,6 +41,8 @@ set -x EDITOR vim
 # unfuck POSIX/BSD defaults #
 set -x BLOCKSIZE 1024
 
+# force SHELL
+set -x SHELL /usr/bin/fish
 
 #
 # load virtualfish #
