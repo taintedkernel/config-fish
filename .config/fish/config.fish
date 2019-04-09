@@ -42,7 +42,11 @@ set -x EDITOR vim
 set -x BLOCKSIZE 1024
 
 # force SHELL
-set -x SHELL /usr/bin/fish
+if [ -x "/usr/bin/fish" ]
+    set -x SHELL /usr/bin/fish
+elif [ -x "/usr/local/bin/fish" ]
+    set -x SHELL /usr/local/bin/fish
+end
 
 #
 # load virtualfish #
