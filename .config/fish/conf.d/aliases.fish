@@ -56,7 +56,7 @@ alias tf='tail -f'
 alias tF='tail -F'
 
 # df in MiB, du in KiB
-alias df='df -m'
+alias df='df -m -x overlay -x squashfs -x tmpfs'
 alias du='du -k'
 
 alias dud='du -d 1'
