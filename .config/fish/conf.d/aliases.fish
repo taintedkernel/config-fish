@@ -121,6 +121,9 @@ function aic --description "ack ignore comments"
     ack $args "^[^#]*$pattern"
 end
 
+# ssh
+alias sal='eval (ssh-agent -c)'
+
 # git #
 function gcr --description "change dir to git root"
     which git >/dev/null ^&1
