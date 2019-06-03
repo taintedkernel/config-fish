@@ -121,6 +121,16 @@ function aic --description "ack ignore comments"
     ack $args "^[^#]*$pattern"
 end
 
+# helper function to invoke ack with Go files
+# and ignore the vendor folder
+function aiv --description "ack ignore vendor folder"
+    if [ (count $argv) -lt 1 ]
+        echo "Need pattern/string to match"
+        return
+    end
+    ack $argv --go --ignore-dir=vendor/
+end
+
 # ssh
 alias sal='eval (ssh-agent -c)'
 
