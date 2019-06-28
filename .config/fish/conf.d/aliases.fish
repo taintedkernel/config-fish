@@ -318,7 +318,19 @@ abbr -a kcgpa "kubectl get po --all-namespaces"
 abbr -a kcgaa "kubectl get all --all-namespaces"
 abbr -a kcgc "kubectl config get-contexts"
 abbr -a kcuc "kubectl config use-context"
-abbr -a kcsn "kubectl config set-context --current --namespace "
+abbr -a kcsn "kubectl config set-context --current --namespace"
+
+function kcpn --description "kubernetes pod name"
+    kubectl get pods -l "app=$argv" -o jsonpath="{.items[0].metadata.name}"
+end
+
+function kcgpn --description "kubernetes get pod by name"
+    kubectl get po (kcpn $argv)
+end
+
+function kcln --description "kubernetes get pod by name"
+    kubectl logs (kcpn $argv)
+end
 
 ### other functions ###
 
