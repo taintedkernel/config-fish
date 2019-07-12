@@ -307,6 +307,7 @@ abbr -a kc "kubectl"
 abbr -a kcg "kubectl get"
 abbr -a kcd "kubectl describe"
 abbr -a kcr "kubectl delete"
+abbr -a kcrp "kubectl delete po"
 abbr -a kcgp "kubectl get po"
 abbr -a kcgs "kubectl get svc"
 abbr -a kcga "kubectl get all"
@@ -319,16 +320,19 @@ abbr -a kcgaa "kubectl get all --all-namespaces"
 abbr -a kcgc "kubectl config get-contexts"
 abbr -a kcuc "kubectl config use-context"
 abbr -a kcsn "kubectl config set-context --current --namespace"
+abbr -a kcpn "kc_po_name"
+abbr -a kcgpn "kc_get_po_by_name"
+abbr -a kcln "kc_log_by_name"
 
-function kcpn --description "kubernetes pod name"
+function kc_po_name --description "kubernetes pod name"
     kubectl get pods -l "app=$argv" -o jsonpath="{.items[0].metadata.name}"
 end
 
-function kcgpn --description "kubernetes get pod by name"
+function kc_get_po_by_name --description "kubernetes get pod by name"
     kubectl get po (kcpn $argv)
 end
 
-function kcln --description "kubernetes get pod by name"
+function kc_log_by_name --description "kubernetes get pod by name"
     kubectl logs (kcpn $argv)
 end
 
