@@ -159,6 +159,7 @@ abbr -a gbra 'git branch -a'
 abbr -a gbrd 'git branch -d'
 abbr -a gst 'git status'
 abbr -a gdi 'git diff'
+abbr -a gdio 'git diff HEAD~1'
 abbr -a gdi. 'git diff .'
 abbr -a gdim 'git diff master'
 abbr -a gdic 'git diff --cached'
@@ -330,11 +331,11 @@ function kc_po_name --description "kubernetes pod name"
 end
 
 function kc_get_po_by_name --description "kubernetes get pod by name"
-    kubectl get po (kcpn $argv)
+    kubectl get po (kc_po_name $argv)
 end
 
 function kc_log_by_name --description "kubernetes get pod by name"
-    kubectl logs (kcpn $argv)
+    kubectl logs (kc_po_name $argv)
 end
 
 ### other functions ###
