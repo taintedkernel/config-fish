@@ -135,20 +135,6 @@ end
 alias sal='eval (ssh-agent -c)'
 
 # git #
-function gcr --description "change dir to git root"
-    which git >/dev/null ^&1
-    if [ $status -ne 0 ]
-        echo "git not found!"
-        return
-    end
-    set GIT_ROOT (git rev-parse --show-toplevel 2>/dev/null)
-    if [ $status -eq 0 ]
-        cd $GIT_ROOT
-    else
-        echo "not in a git repo!"
-    end
-end
-
 # Use abbr instead of alias to allow tab completion
 abbr -a gcl 'git clone'
 abbr -a gco 'git checkout'
@@ -180,6 +166,37 @@ abbr -a glom 'git pull origin master'
 abbr -a glomf 'git pull origin master --ff-only'
 abbr -a glomr 'git pull origin master --rebase'
 abbr -a gsom 'git push origin master'
+
+# TODO: Verify git binary present with helper function,
+# add check to each function here
+
+# TODO: Add ability to diff between previous commits rather
+# then just HEAD, eg: git diff HEAD~2 HEAD~1
+function gdih --description "git diff HEAD"
+    which git >/dev/null ^&1
+    if [ $status -ne 0 ]
+        echo "git not found!"
+        return
+    end
+    if [ "$argv" = "" ]
+        set argv "1"
+    end
+    git diff HEAD~$argv ^/dev/null
+end
+
+function gcr --description "change dir to git root"
+    which git >/dev/null ^&1
+    if [ $status -ne 0 ]
+        echo "git not found!"
+        return
+    end
+    set GIT_ROOT (git rev-parse --show-toplevel ^/dev/null)
+    if [ $status -eq 0 ]
+        cd $GIT_ROOT
+    else
+        echo "not in a git repo!"
+    end
+end
 
 # TODO: This should take arguments
 function gsob --description "git push origin <current branch>"
