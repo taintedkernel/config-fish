@@ -43,10 +43,10 @@ set -x BLOCKSIZE 1024
 
 # force SHELL
 if [ -x "/usr/bin/fish" ]
-    set -x SHELL /usr/bin/fish
+    set -xg SHELL /usr/bin/fish
 end
 if [ -x "/usr/local/bin/fish" ]
-    set -x SHELL /usr/local/bin/fish
+    set -xg SHELL /usr/local/bin/fish
 end
 
 #
