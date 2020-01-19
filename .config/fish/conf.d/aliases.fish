@@ -60,9 +60,16 @@ alias tF='tail -F'
 # df in MiB, du in KiB
 # Exclude useless fs types (mostly from k8s)
 alias df='df -mT -x overlay -x tmpfs'
-alias du='du -k'
 
-alias dud='du -d 1'
+# du with depth and defaults
+function dud --description "du depth w/arg"
+    if [ (count $argv) -lt 1 ]
+        set depth 1
+    else
+        set depth $argv[1]
+    end
+    du -d $depth
+end
 
 # Show only useful fs types (similar to df)
 alias mnt='mount -t ext4,xfs,zfs,vfat,cifs,nfs,nfs4'
