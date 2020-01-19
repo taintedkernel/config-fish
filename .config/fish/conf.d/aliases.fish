@@ -85,10 +85,12 @@ else
 end
 
 # systemctl, our favorite #
-abbr -a scst='systemctl start'
-abbr -a scrs='systemctl restart'
-abbr -a scus='systemctl status'
-abbr -a scop='systemctl stop'
+abbr -a scst 'systemctl start'
+abbr -a scrs 'systemctl restart'
+abbr -a scus 'systemctl status'
+abbr -a scop 'systemctl stop'
+abbr -a scen 'systemctl enable'
+abbr -a scdi 'systemctl disable'
 
 # grep #
 alias grep='grep --color=auto'
