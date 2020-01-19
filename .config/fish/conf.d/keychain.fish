@@ -9,7 +9,7 @@ if [ -x "/usr/local/bin/fish" ]
 end
 
 if [ -x "/usr/bin/keychain" ]
-    eval (keychain --eval --inherit any --agents ssh id_unity id_github_personal_at_work)
+    eval (keychain --eval --ignore-missing --inherit any --agents ssh id_eternal_rigel id_github id_unity id_github_personal_at_work)
 end
 
 
