@@ -44,6 +44,25 @@ if [ (uname) = "Darwin" ]
     end
 end
 
+# sudo !!
+function sudo --description 'Run command using sudo (use !! for last command)'
+	if test (count $argv) -gt 0
+		switch $argv[1]
+		case '!!'
+			if test (count $argv) -gt 1
+				set cmd "command sudo $history[1] $argv[2..-1]"
+			else
+				set cmd "command sudo $history[1]"
+			end
+		case '*'
+			set cmd "command sudo $argv"
+		end
+	else
+		set cmd "command sudo fish"
+	end
+	eval $cmd
+end
+
 alias c='clear'
 alias f='find'
 alias h='history'
@@ -337,9 +356,7 @@ if [ -x "/usr/local/bin/brew" ]
     abbr -a bs "brew search"
 end
 
-
 ### non-system aliases/functions ###
-
 # docker #
 function dent --description "enter a docker container"
     CONTAINER=$argv
@@ -368,6 +385,8 @@ abbr -a kcpn "kc_po_name"
 abbr -a kcgpn "kc_get_po_by_name"
 abbr -a kcln "kc_log_by_name"
 
+# Might deprecate these since we are using actual shell completions now
+# https://github.com/evanlucas/fish-kubectl-completions
 function kc_po_name --description "kubernetes pod name"
     kubectl get pods -l "app=$argv" -o jsonpath="{.items[0].metadata.name}"
 end
@@ -381,7 +400,6 @@ function kc_log_by_name --description "kubernetes get pod by name"
 end
 
 ### other functions ###
-
 function glc --description "grab a line"
     if [ "$argv" -gt 0 ]
         cat - | tail -n+$argv | head -1
