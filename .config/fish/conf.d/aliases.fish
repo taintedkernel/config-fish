@@ -11,6 +11,8 @@
 
 
 ### aliases/abbrs ###
+
+# system / core utils #
 alias sf='source ~/.config/fish/conf.d/*'
 alias cfc='cd ~/.config/fish/conf.d/'
 
@@ -56,14 +58,14 @@ alias tf='tail -f'
 alias tF='tail -F'
 
 # df in MiB, du in KiB
-# Exclude useless fs types
+# Exclude useless fs types (mostly from k8s)
 alias df='df -mT -x overlay -x tmpfs'
 alias du='du -k'
 
 alias dud='du -d 1'
 
-# Show only useful fs types
-alias mount='mount -t ext4,xfs,zfs,vfat,cifs,nfs,nfs4'
+# Show only useful fs types (similar to df)
+alias mnt='mount -t ext4,xfs,zfs,vfat,cifs,nfs,nfs4'
 
 # Platform/utils specific settings
 # Only GNU du supports '-S' for separate-dirs
@@ -74,6 +76,12 @@ if [ (uname) = "Darwin" ]
 else
     alias duds='du -S -d 1'
 end
+
+# systemctl, our favorite #
+abbr -a scst='systemctl start'
+abbr -a scrs='systemctl restart'
+abbr -a scus='systemctl status'
+abbr -a scop='systemctl stop'
 
 # grep #
 alias grep='grep --color=auto'
@@ -131,7 +139,7 @@ function aiv --description "ack ignore vendor folder"
     ack $argv --go --ignore-dir=vendor/
 end
 
-# ssh
+# ssh #
 alias sal='eval (ssh-agent -c)'
 
 # git #
@@ -246,6 +254,10 @@ function gsomk --description "git push origin master with temporary unlocked key
 end
 
 # vcsh #
+abbr -a gstun 'git status -uno'
+abbr -a vlu 'vcsh list-untracked -a'
+abbr -a vlt 'vcsh list-tracked'
+
 #function vs
 #    which vcsh >/dev/null ^&1
 #    if test $status -ne 0
@@ -299,7 +311,11 @@ alias td='tmux detach -s'
 # package manager #
 if [ -x "/usr/bin/apt-get" ]
     abbr -a acs 'apt-cache search'
-    abbr -a agi 'sudo apt-get install'
+    if [ -x "/usr/bin/apt" ]
+        abbr -a agi 'sudo apt install'
+    else
+        abbr -a agi 'sudo apt-get install'
+    end
 end
 if [ -x "/usr/bin/yum" ]
     abbr -a ys 'sudo yum search'
@@ -314,14 +330,12 @@ end
 ### non-system aliases/functions ###
 
 # docker #
-
 function dent --description "enter a docker container"
     CONTAINER=$argv
     docker exec -it $CONTAINER bash
 end
 
 # kubernetes #
-
 abbr -a kc "kubectl"
 abbr -a kcg "kubectl get"
 abbr -a kcd "kubectl describe"
