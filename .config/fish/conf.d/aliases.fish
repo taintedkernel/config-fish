@@ -22,10 +22,12 @@ alias ....='cd ..; and cd ..; and cd ..'
 
 alias l='ls'
 alias ll='ls -l'
+alias llt='ls -lt'
 alias lrt='ls -lrt'
 alias la='ls -A'
 alias lal='ls -lA'
 alias lla='ls -lA'
+alias lalt='ls -lAt'
 alias lart='ls -lArt'
 
 # Avoid wildcard expansion errors #
