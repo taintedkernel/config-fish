@@ -206,6 +206,7 @@ abbr -a glom 'git pull origin master'
 abbr -a glomf 'git pull origin master --ff-only'
 abbr -a glomr 'git pull origin master --rebase'
 abbr -a gsom 'git push origin master'
+abbr -a grbm 'git rebase master'
 
 # TODO: Verify git binary present with helper function,
 # add check to each function here
