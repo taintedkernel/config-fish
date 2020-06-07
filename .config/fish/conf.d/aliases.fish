@@ -214,7 +214,7 @@ abbr -a grbm 'git rebase master'
 # TODO: Add ability to diff between previous commits rather
 # then just HEAD, eg: git diff HEAD~2 HEAD~1
 function gdih --description "git diff HEAD"
-    which git >/dev/null ^&1
+    which git >/dev/null 2>&1
     if [ $status -ne 0 ]
         echo "git not found!"
         return
@@ -226,7 +226,7 @@ function gdih --description "git diff HEAD"
 end
 
 function gcr --description "change dir to git root"
-    which git >/dev/null ^&1
+    which git >/dev/null 2>&1
     if [ $status -ne 0 ]
         echo "git not found!"
         return
@@ -362,7 +362,7 @@ end
 ### non-system aliases/functions ###
 # docker #
 function dent --description "enter a docker container"
-    CONTAINER=$argv
+    set CONTAINER $argv
     docker exec -it $CONTAINER bash
 end
 
