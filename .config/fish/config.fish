@@ -62,13 +62,15 @@ eval (python -m virtualfish ^/dev/null)
 set -xg VIRTUAL_ENV_DISABLE_PROMPT true
 
 # load powerline #
-set POWERLINE_BASES "$HOME/.local/lib/python2.7/" "$HOME/Library/Python/2.7/lib/python/"
+# give priority to python 3.x and exit early
+set POWERLINE_BASES "$HOME/.local/lib/python3.8/" "$HOME/Library/Python/3.7/lib/python/" "$HOME/.local/lib/python2.7/" "$HOME/Library/Python/2.7/lib/python/"
 set PL_FISH "site-packages/powerline/bindings/fish/"
 
 for P in $POWERLINE_BASES
     set POWERLINE_PATH "$P/$PL_FISH"
     if [ -d "$POWERLINE_PATH" ]
         set fish_function_path $fish_function_path $POWERLINE_PATH
+        break
     end
 end
 
