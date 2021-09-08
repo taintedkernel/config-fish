@@ -177,7 +177,6 @@ alias sal='eval (ssh-agent -c)'
 abbr -a gcl 'git clone'
 abbr -a gco 'git checkout'
 abbr -a gcob 'git checkout -b'
-abbr -a gcom 'git checkout master'
 abbr -a gbr 'git branch'
 abbr -a gbra 'git branch -a'
 abbr -a gbrd 'git branch -d'
@@ -187,7 +186,6 @@ abbr -a glsp 'git ls-tree -r --name-only --full-name'
 abbr -a gdi 'git diff'
 abbr -a gdio 'git diff HEAD~1'
 abbr -a gdi. 'git diff .'
-abbr -a gdim 'git diff master'
 abbr -a gdic 'git diff --cached'
 abbr -a gdit 'git difftool'
 abbr -a gdit. 'git difftool .'
@@ -204,14 +202,63 @@ abbr -a gcia 'git commit --amend'
 abbr -a grm 'git remote'
 abbr -a grmv 'git remote -v'
 abbr -a glf 'git pull --ff-only'
-abbr -a glom 'git pull origin master'
-abbr -a glomf 'git pull origin master --ff-only'
-abbr -a glomr 'git pull origin master --rebase'
-abbr -a gsom 'git push origin master'
-abbr -a grbm 'git rebase master'
 
-# TODO: Verify git binary present with helper function,
-# add check to each function here
+function gmbr --description "find git main/master default branch"
+    which git >/dev/null 2>&1
+    if [ $status -ne 0 ]
+        return
+    end
+    set GIT_ROOT (git rev-parse --show-toplevel ^/dev/null)
+    if [ "$GIT_ROOT" = "" ]
+        return
+    end
+    ls "$GIT_ROOT/.git/refs/heads/main" >/dev/null 2>&1
+    if [ $status -eq 0 ]
+        echo "main"
+    end
+    ls "$GIT_ROOT/.git/refs/heads/master" >/dev/null 2>&1
+    if [ $status -eq 0 ]
+        echo "master"
+    end
+end
+
+# This only works for aliases where the branch name can be the last argument
+function git-helper
+    set DEFAULT (gmbr)
+    if test "$DEFAULT" = ""
+        echo "unable to determine default branch"
+        return
+    end
+    git $argv $DEFAULT
+end
+
+function gdim --description "git diff main/master"
+    git-helper "diff"
+end
+
+function gcom --description "git checkout main/master"
+    git-helper "checkout"
+end
+
+function glom --description "git pull origin main/master"
+    git-helper "pull origin"
+end
+
+function glomf --description "git ff pull origin main/master"
+    git-helper "pull origin --ff-only"
+end
+
+function glomr --description "git rebase pull origin main/master"
+    git-helper "pull origin --rebase"
+end
+
+function gsom --description "git push origin main/master"
+    git-helper "push origin"
+end
+
+function grbm --description "git rebase main/master"
+    git-helper "rebase"
+end
 
 # TODO: Add ability to diff between previous commits rather
 # then just HEAD, eg: git diff HEAD~2 HEAD~1
