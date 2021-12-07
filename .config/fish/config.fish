@@ -9,7 +9,7 @@
 # set PATH
 # TODO: Add Linux Python path
 # TODO: Set /usr/local/ as higher priority, necessary for OS/X homebrew and pip
-set PATHS "$HOME/bin" "$HOME/.local/bin" "$HOME/Library/Python/2.7/bin" "$HOME/Library/Python/3.6/bin" "$HOME/Library/Python/3.7/bin" "/snap/bin"
+set PATHS "$HOME/bin" "$HOME/.local/bin" "$HOME/Library/Python/2.7/bin" "$HOME/Library/Python/3.6/bin" "$HOME/Library/Python/3.7/bin" "/snap/bin" "/opt/bin"
 for P in $PATHS
     if not contains "$P" $PATH
         if [ -d "$P" ]
@@ -63,7 +63,7 @@ set -xg VIRTUAL_ENV_DISABLE_PROMPT true
 
 # load powerline #
 # give priority to python 3.x and exit early
-set POWERLINE_BASES "$HOME/.local/lib/python3.8/" "$HOME/.local/lib/python3.7/" "$HOME/Library/Python/3.7/lib/python/" "$HOME/.local/lib/python2.7/" "$HOME/Library/Python/2.7/lib/python/"
+set POWERLINE_BASES "$HOME/.local/lib/python3.9/" "$HOME/.local/lib/python3.8/" "$HOME/Library/Python/3.7/lib/python/" "$HOME/.local/lib/python2.7/" "$HOME/Library/Python/2.7/lib/python/"
 set PL_FISH "site-packages/powerline/bindings/fish/"
 
 for P in $POWERLINE_BASES
