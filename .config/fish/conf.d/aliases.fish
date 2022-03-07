@@ -393,14 +393,12 @@ alias td='tmux detach -s'
 
 ## distro-specific ##
 # package manager #
-if [ -x "/usr/bin/apt-get" ]
-    if [ -x "/usr/bin/apt" ]
-        abbr -a aps 'apt search'
-        abbr -a api 'sudo apt install'
-    else
-        abbr -a aps 'apt-cache search'
-        abbr -a api 'sudo apt-get install'
-    end
+if [ -x "/usr/bin/apt" ]
+    abbr -a acs 'apt search'
+    abbr -a agi 'sudo apt install'
+else if [ -x "/usr/bin/apt-get" ]
+    abbr -a acs 'apt-cache search'
+    abbr -a agi 'sudo apt-get install'
 end
 if [ -x "/usr/bin/yum" ]
     abbr -a ys 'sudo yum search'
