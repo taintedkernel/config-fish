@@ -110,8 +110,10 @@ abbr -a scst 'systemctl start'
 abbr -a scrs 'systemctl restart'
 abbr -a scus 'systemctl status'
 abbr -a scop 'systemctl stop'
-abbr -a scen 'systemctl enable'
-abbr -a scdi 'systemctl disable'
+
+# journalctl #
+abbr -a jcs 'journalctl -u'
+abbr -a jck 'journalctl -k'
 
 # grep #
 alias grep='grep --color=auto'
@@ -229,7 +231,7 @@ function git-helper
         echo "unable to determine default branch"
         return
     end
-    git $argv $DEFAULT
+    echo "git $argv[1] $DEFAULT $argv[2]" | bash
 end
 
 function gdim --description "git diff main/master"
@@ -245,11 +247,11 @@ function glom --description "git pull origin main/master"
 end
 
 function glomf --description "git ff pull origin main/master"
-    git-helper "pull origin --ff-only"
+    git-helper "pull origin" "--ff-only"
 end
 
 function glomr --description "git rebase pull origin main/master"
-    git-helper "pull origin --rebase"
+    git-helper "pull origin" "--rebase"
 end
 
 function gsom --description "git push origin main/master"
