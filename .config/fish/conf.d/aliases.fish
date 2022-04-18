@@ -113,6 +113,7 @@ abbr -a scop 'systemctl stop'
 
 # journalctl #
 abbr -a jcs 'journalctl -u'
+abbr -a jcu 'journalctl -u'
 abbr -a jck 'journalctl -k'
 
 # grep #
