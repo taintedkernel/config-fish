@@ -6,10 +6,16 @@
 #    set -g fish_user_abbreviations
 #end
 
-# set PATH
-# TODO: Add Linux Python path
-# TODO: Set /usr/local/ as higher priority, necessary for OS/X homebrew and pip
-set PATHS "$HOME/bin" "$HOME/.local/bin" "$HOME/Library/Python/2.7/bin" "$HOME/Library/Python/3.6/bin" "$HOME/Library/Python/3.7/bin" "/snap/bin" "/opt/bin"
+### set PATH ###
+# All hosts
+set PATHS "$HOME/bin" "$HOME/.local/bin"
+
+# OSX hosts
+set -a PATHS "$HOME/Library/Python/2.7/bin" "$HOME/Library/Python/3.6/bin" "$HOME/Library/Python/3.7/bin" "$HOME/Library/Python/3.9/bin"
+
+# Linux hosts
+set -a PATHS "/snap/bin" "/opt/bin"
+
 for P in $PATHS
     if not contains "$P" $PATH
         if [ -d "$P" ]
@@ -18,16 +24,17 @@ for P in $PATHS
     end
 end
 
-# add higher-priority PATHs
-# Necessary due to very odd protobuf/grpc issue
-set PATHS "$HOME/sandbox/go/bin"
-for P in $PATHS
-    if not contains "$P" $PATH
-        if [ -d "$P" ]
-            set PATH $P $PATH
-        end
-    end
-end
+# add higher-priority PATHs (not needed for now, commenting out) #
+#set PATHS "/usr/local/bin"
+#for P in $PATHS
+#    if not contains "$P" $PATH
+#        if [ -d "$P" ]
+#            set PATH $P $PATH
+#        end
+#    end
+#end
+
+### end PATH ###
 
 #### environment variables ###
 # set TERM
