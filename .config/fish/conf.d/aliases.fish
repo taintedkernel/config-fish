@@ -105,11 +105,14 @@ else
     alias duds='du -S -d 1'
 end
 
+# other tools
+abbr -a cx 'chmod +x'
+
 # systemctl, our favorite #
-abbr -a scst 'systemctl start'
-abbr -a scrs 'systemctl restart'
-abbr -a scus 'systemctl status'
-abbr -a scop 'systemctl stop'
+abbr -a scst 'sudo systemctl start'
+abbr -a scrs 'sudo systemctl restart'
+abbr -a scus 'sudo systemctl status'
+abbr -a scop 'sudo systemctl stop'
 
 # journalctl #
 abbr -a jcs 'journalctl -u'
