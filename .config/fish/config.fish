@@ -56,6 +56,11 @@ if [ -x "/usr/local/bin/fish" ]
     set -xg SHELL /usr/local/bin/fish
 end
 
+# load custom dircolors
+if [ -f "$HOME/.config/fish/dircolors.256dark" ]
+    eval (dircolors -c "$HOME/.config/fish/dircolors.256dark")
+end
+
 #
 # load virtualfish #
 # http://virtualfish.readthedocs.io/en/latest/index.html
