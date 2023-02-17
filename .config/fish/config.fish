@@ -8,7 +8,7 @@
 
 ### set PATH ###
 # All hosts
-set PATHS "$HOME/bin" "$HOME/.local/bin"
+set PATHS "$HOME/bin" "$HOME/.local/bin" "$HOME/.krew/bin"
 
 # OSX hosts
 set -a PATHS "$HOME/Library/Python/2.7/bin" "$HOME/Library/Python/3.6/bin" "$HOME/Library/Python/3.7/bin" "$HOME/Library/Python/3.9/bin"
