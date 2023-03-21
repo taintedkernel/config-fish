@@ -105,6 +105,10 @@ else
     alias duds='du -S -d 1'
 end
 
+# iproute2
+abbr -a ipl 'ip -br l'
+abbr -a ipa 'ip -br a'
+
 # other tools
 abbr -a cx 'chmod +x'
 
@@ -186,6 +190,7 @@ abbr -a gcob 'git checkout -b'
 abbr -a gbr 'git branch'
 abbr -a gbra 'git branch -a'
 abbr -a gbrd 'git branch -d'
+abbr -a gbrvv 'git branch -vv'
 abbr -a gst 'git status'
 abbr -a gls 'git ls-tree -r --name-only --full-name HEAD'
 abbr -a glsp 'git ls-tree -r --name-only --full-name'
@@ -208,6 +213,7 @@ abbr -a gcia 'git commit --amend'
 abbr -a grm 'git remote'
 abbr -a grmv 'git remote -v'
 abbr -a glf 'git pull --ff-only'
+abbr -a gstun 'git status -uno'
 
 function gmbr --description "find git main/master default branch"
     which git >/dev/null 2>&1
@@ -342,7 +348,6 @@ function gsomk --description "git push origin master with temporary unlocked key
 end
 
 # vcsh #
-abbr -a gstun 'git status -uno'
 abbr -a vlu 'vcsh list-untracked -a'
 abbr -a vlt 'vcsh list-tracked'
 
@@ -356,6 +361,8 @@ abbr -a vlt 'vcsh list-tracked'
 #end
 
 # tmux #
+abbr -a sta 'sudo "tmux attach"'
+
 # TODO: Switch this to abbr, or use --wraps to existing tmux completions
 function ta --description "tmux attach"
     tmux ls >/dev/null

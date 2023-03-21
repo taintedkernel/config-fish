@@ -68,7 +68,8 @@ end
 # located here instead of in conf.d due to
 # requirement of invoking after PATH modifications
 #
-eval (python -m virtualfish ^/dev/null)
+# disabling this, now installed via: "vf install"
+#eval (python -m virtualfish ^/dev/null)
 
 # disable automatic setting of fish_prompt in virtualenv, powerline handles this
 set -xg VIRTUAL_ENV_DISABLE_PROMPT true
