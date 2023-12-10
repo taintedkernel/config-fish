@@ -20,15 +20,28 @@ alias ..='cd ..'
 alias ...='cd ..; and cd ..'
 alias ....='cd ..; and cd ..; and cd ..'
 
-alias l='ls'
-alias ll='ls -l'
-alias llt='ls -lt'
-alias lrt='ls -lrt'
-alias la='ls -A'
-alias lal='ls -lA'
-alias lla='ls -lA'
-alias lalt='ls -lAt'
-alias lart='ls -lArt'
+if [ (which lsd) = "/usr/bin/lsd" ]
+    alias l='lsd'
+    alias ls='lsd'
+    alias ll='ls -l'
+    alias llt='ls -lt'
+    alias lrt='ls -lrt'
+    alias la='ls -A'
+    alias lal='ls -lA'
+    alias lla='ls -lA'
+    alias lalt='ls -lAt'
+    alias lart='ls -lArt'
+else
+    alias l='ls'
+    alias ll='ls -l'
+    alias llt='ls -lt'
+    alias lrt='ls -lrt'
+    alias la='ls -A'
+    alias lal='ls -lA'
+    alias lla='ls -lA'
+    alias lalt='ls -lAt'
+    alias lart='ls -lArt'
+end
 
 # Avoid wildcard expansion errors #
 # https://fishshell.com/docs/current/index.html#expand
