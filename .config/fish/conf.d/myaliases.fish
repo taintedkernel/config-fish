@@ -28,7 +28,7 @@ if [ (which lsd) = "/usr/bin/lsd" ]
     alias lrt='ls -lrt'
     alias la='ls -A'
     alias lal='ls -lA'
-    alias lla='ls -lA'
+    alias lla='ls -la'
     alias lalt='ls -lAt'
     alias lart='ls -lArt'
 else
@@ -38,7 +38,7 @@ else
     alias lrt='ls -lrt'
     alias la='ls -A'
     alias lal='ls -lA'
-    alias lla='ls -lA'
+    alias lla='ls -la'
     alias lalt='ls -lAt'
     alias lart='ls -lArt'
 end
