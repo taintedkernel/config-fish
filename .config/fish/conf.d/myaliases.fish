@@ -126,12 +126,14 @@ abbr -a ipa 'ip -br a'
 abbr -a cx 'chmod +x'
 
 # systemctl, our favorite #
+abbr -a scc 'sudo systemctl'
 abbr -a scst 'sudo systemctl start'
 abbr -a scrs 'sudo systemctl restart'
 abbr -a scus 'sudo systemctl status'
 abbr -a scop 'sudo systemctl stop'
 
 # journalctl #
+abbr -a jcc 'journalctl'
 abbr -a jcs 'journalctl -u'
 abbr -a jcu 'journalctl -u'
 abbr -a jck 'journalctl -k'
@@ -414,6 +416,9 @@ end
 alias tls='tmux ls'
 alias tns='tmux new-session -s'
 alias td='tmux detach -s'
+
+# Editing system configs
+alias vilog='sudoedit /etc/logcheck/ignore.d.workstation/custom'
 
 ## distro-specific ##
 # package manager #
