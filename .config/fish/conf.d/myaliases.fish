@@ -196,6 +196,7 @@ end
 
 # ssh #
 alias sal='eval (ssh-agent -c)'
+alias sshnk='ssh -oPubkeyAuthentication=no -oPasswordAuthentication=yes'
 
 # git #
 # Use abbr instead of alias to allow tab completion
